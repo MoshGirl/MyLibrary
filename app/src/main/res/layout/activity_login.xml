@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".Login_Activity"
+    android:background="#21466C">
+
+
+    <TextView
+        android:id="@+id/tituloLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Entre na sua Bibliotequita!"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+         />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/tituloLogin"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        app:srcCompat="@drawable/baseline_auto_stories_white_48" />
+
+    <TextView
+        android:id="@+id/descricaoLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:text="Entre com sua conta existente"
+        android:textColor="@color/white"
+        />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailTil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/descricaoLogin"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/senhaTil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emailTil"
+            app:passwordToggleEnabled="true"
+            >
+
+            <EditText
+                android:id="@+id/edtSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Senha"
+                android:inputType="textPassword"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/senhaTil"
+        android:background="@color/white"
+        android:text="Entrar"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"/>
+
+    <TextView
+        android:id="@+id/bt_cadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ainda_n_o_possue_uma_conta_inscreva_se_aqui"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        />
+
+</RelativeLayout>

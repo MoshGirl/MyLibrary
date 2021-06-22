@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".Cadastro_Activity"
+    android:background="#21466C">
+
+    <TextView
+        android:id="@+id/tituloCadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cadastro"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+        />
+
+    <TextView
+        android:id="@+id/descricaoCadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tituloCadastro"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:text="Crie sua Conta"
+        android:textColor="@color/white"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailTil1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/descricaoCadastro"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <EditText
+            android:id="@+id/edtCadastroEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailTil2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailTil1"
+        android:layout_marginBottom="10dp">
+
+        <EditText
+            android:id="@+id/edtConfirmaEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirme o E-mail"
+            android:inputType="textEmailAddress"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/senhaTil1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailTil2"
+        android:layout_marginBottom="10dp"
+        app:passwordToggleEnabled="true"
+        >
+
+        <EditText
+            android:id="@+id/edtCadastroSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Senha"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/senhaTil2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/senhaTil1"
+        android:layout_marginBottom="10dp"
+        app:passwordToggleEnabled="true"
+        >
+
+        <EditText
+            android:id="@+id/edtConfirmaSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirme sua Senha"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nomeTil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/senhaTil2"
+        >
+
+        <EditText
+            android:id="@+id/edtNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome Completo"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_cadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:gravity="right|center_horizontal"
+        android:src="@android:drawable/ic_input_add"
+        android:textAlignment="center"
+        app:backgroundTint="@color/white" />
+
+
+</RelativeLayout>
