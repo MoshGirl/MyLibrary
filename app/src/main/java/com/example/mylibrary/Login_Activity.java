@@ -20,6 +20,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login_Activity extends AppCompatActivity {
 
@@ -35,7 +40,6 @@ public class Login_Activity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         mAuth = FirebaseAuth.getInstance();
-        checkUser();
 
         getSupportActionBar().hide();
 
@@ -63,13 +67,7 @@ public class Login_Activity extends AppCompatActivity {
 
     }
 
-    private void checkUser() {
-        FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        if(firebaseUser != null){
-            startActivity(new Intent(Login_Activity.this, Usuario_Activity.class));
-            finish();
-        }
-    }
+
 
     private void validarDados2() {
         email = binding.edtEmail.getText().toString().trim();
@@ -94,11 +92,8 @@ public class Login_Activity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                String email = firebaseUser.getEmail();
-                Toast.makeText(Login_Activity.this, "Logado com Sucesso em \n" +email, Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Login_Activity.this, Usuario_Activity.class));
-                finish();
+                checkUser();
+
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
@@ -109,5 +104,37 @@ public class Login_Activity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void checkUser() {
+        progressDialog.setMessage("Checando Usuario...");
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference.child(firebaseUser.getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        progressDialog.dismiss();
+                        String userType = ""+snapshot.child("userType").getValue();
+                        if(userType.equals("user")){
+                            FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                            String email = firebaseUser.getEmail();
+                            Toast.makeText(Login_Activity.this, "Logado com Sucesso em \n" +email, Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(Login_Activity.this, Usuario_Activity.class));
+                            finish();
+                        }
+                        else if(userType.equals("admin")){
+                            startActivity(new Intent(Login_Activity.this, Usuario_Activity.class));
+                            finish();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 }

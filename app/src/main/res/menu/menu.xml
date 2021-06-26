@@ -6,7 +6,8 @@
         android:id="@+id/search_ic"
         android:title="Busca"
         android:icon="@drawable/ic_serch"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.widget.SearchView"
         />
     <item
         android:id="@+id/perfil"

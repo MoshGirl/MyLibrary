@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.mylibrary.databinding.ActivityUsuarioBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,9 +30,6 @@ public class Usuario_Activity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         actionBar = getSupportActionBar();
-        actionBar.setTitle("LogIn");
-
-
 
         firebaseAuth = FirebaseAuth.getInstance();
         checkUser();
@@ -45,7 +44,8 @@ public class Usuario_Activity extends AppCompatActivity {
             finish();
         }else {
             String email = firebaseUser.getEmail();
-            binding.emailTxt.setText(email);
+            actionBar.setTitle(email);
+            Toast.makeText(Usuario_Activity.this, "Você logou com "+ email, Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -54,6 +54,22 @@ public class Usuario_Activity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
+
+        MenuItem.OnActionExpandListener onActionExpandListener = new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                return true;
+            }
+        };
+        menu.findItem(R.id.search_ic).setOnActionExpandListener(onActionExpandListener);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search_ic).getActionView();
+        searchView.setQueryHint("Busque um livro...");
+
         return super.onCreateOptionsMenu(menu);
     }
 

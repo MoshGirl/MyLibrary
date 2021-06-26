@@ -18,6 +18,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class Cadastro_Activity extends AppCompatActivity {
 
@@ -31,6 +35,7 @@ public class Cadastro_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCadastroBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -83,6 +88,7 @@ public class Cadastro_Activity extends AppCompatActivity {
         }
     }
 
+
     private void firebaseCadastro() {
         progressDialog.show();
         firebaseAuth.createUserWithEmailAndPassword(email, senha)
@@ -90,14 +96,7 @@ public class Cadastro_Activity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
 
-                progressDialog.dismiss();
-
-                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                String email = firebaseUser.getEmail();
-                Toast.makeText(Cadastro_Activity.this, "Conta criada com sucesso!\n"+email, Toast.LENGTH_SHORT).show();
-
-                startActivity(new Intent(Cadastro_Activity.this, Usuario_Activity.class));
-                finish();
+                updateUserInfo();
 
             }
         })
@@ -108,5 +107,45 @@ public class Cadastro_Activity extends AppCompatActivity {
                 Toast.makeText(Cadastro_Activity.this, "" +e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void updateUserInfo() {
+        progressDialog.setMessage("Salvando usuário...");
+
+        long timestamp = System.currentTimeMillis();
+
+        String uid = firebaseAuth.getUid();
+
+        //setup dados para adicionar ao banco
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("uid", uid);
+        hashMap.put("email", email);
+        hashMap.put("nome", nome);
+        hashMap.put("profileImage", "");
+        hashMap.put("userType", "user"); //possiveis valores, user e admin
+        hashMap.put("timeStamp", timestamp );
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference.child(uid).setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+
+                progressDialog.dismiss();
+                Toast.makeText(Cadastro_Activity.this, "Conta criada com sucesso!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Cadastro_Activity.this, Usuario_Activity.class));
+                finish();
+
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
+                        Toast.makeText(Cadastro_Activity.this, "" +e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
     }
 }
