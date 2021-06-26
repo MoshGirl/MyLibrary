@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/search_ic"
+        android:title="Busca"
+        android:icon="@drawable/ic_serch"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/perfil"
+        android:title="Perfil"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/config"
+        android:title="Configurações"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/about"
+        android:title="Sobre Nós"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/exit"
+        android:title="Sair"
+        app:showAsAction="never"
+        />
+
+
+</menu>

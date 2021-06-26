@@ -1,10 +1,14 @@
 package com.example.mylibrary;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.mylibrary.databinding.ActivityUsuarioBinding;
@@ -26,16 +30,12 @@ public class Usuario_Activity extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setTitle("LogIn");
 
+
+
         firebaseAuth = FirebaseAuth.getInstance();
         checkUser();
 
-        binding.btLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                firebaseAuth.signOut();
-                checkUser();
-            }
-        });
+
     }
 
     private void checkUser() {
@@ -48,5 +48,33 @@ public class Usuario_Activity extends AppCompatActivity {
             binding.emailTxt.setText(email);
 
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.perfil){
+
+        }
+
+        if(item.getItemId() == R.id.config){
+
+        }
+
+        if(item.getItemId() == R.id.about){
+            startActivity(new Intent(Usuario_Activity.this, About_Activity.class));
+        }
+
+        if(item.getItemId() == R.id.exit){
+            firebaseAuth.signOut();
+            checkUser();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -10,11 +10,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyLibrary">
+        android:theme="@style/Theme.MyLibrary"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".Usuario_Activity"
+            android:name=".About_Activity"
+            android:parentActivityName=".Usuario_Activity"
+            android:label="Sobre Nós">
 
-            ></activity>
+        </activity>
+        <activity android:name=".Usuario_Activity" />
         <activity
             android:name=".Cadastro_Activity"
             android:label="Cadastre-se"

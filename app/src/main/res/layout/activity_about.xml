@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="#21466C"
+    tools:context=".About_Activity">
+
+    <TextView
+        android:id="@+id/tituloLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bibliotequita!"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@id/tituloLogin"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        app:srcCompat="@drawable/baseline_auto_stories_white_48" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aplicativo de Livros, criando para o trabalho de Programação de Dispositiveis Móveis"
+        android:layout_below="@id/imageView"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alunos:"
+        android:layout_below="@id/textView1"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Anna Carollyne Pereira da Silva \n Lucas S. Benevides \n Nauany Augusto Torres"
+        android:layout_below="@id/textView2"
+        android:layout_marginTop="15dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        />
+
+
+</RelativeLayout>
