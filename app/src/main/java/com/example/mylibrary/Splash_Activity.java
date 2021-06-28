@@ -36,9 +36,6 @@ public class Splash_Activity extends AppCompatActivity {
             @Override
             public void run() {
                 checkUser();
-                Intent it = new Intent(Splash_Activity.this, Login_Activity.class);
-                startActivity(it);
-                finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
 
@@ -46,8 +43,8 @@ public class Splash_Activity extends AppCompatActivity {
 
     private void checkUser() {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if(firebaseUser != null){
-            startActivity(new Intent(Splash_Activity.this, Usuario_Activity.class));
+        if(firebaseUser == null){
+            startActivity(new Intent(Splash_Activity.this, Login_Activity.class));
             finish();
         }else{
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
@@ -57,7 +54,6 @@ public class Splash_Activity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             String userType = ""+snapshot.child("userType").getValue();
                             if(userType.equals("user")){
-
                                 startActivity(new Intent(Splash_Activity.this, Usuario_Activity.class));
                                 finish();
                             }

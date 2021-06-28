@@ -41,7 +41,6 @@ public class Cadastro_Activity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Carregando, aguarde");
-        progressDialog.setMessage("Criando sua conta...");
         progressDialog.setCanceledOnTouchOutside(false);
 
         binding.fabCadastro.setOnClickListener(new View.OnClickListener() {
@@ -90,14 +89,14 @@ public class Cadastro_Activity extends AppCompatActivity {
 
 
     private void firebaseCadastro() {
+        progressDialog.setMessage("Criando sua conta...");
         progressDialog.show();
+
         firebaseAuth.createUserWithEmailAndPassword(email, senha)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-
                 updateUserInfo();
-
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
@@ -143,7 +142,6 @@ public class Cadastro_Activity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception e) {
                         progressDialog.dismiss();
                         Toast.makeText(Cadastro_Activity.this, "" +e.getMessage(), Toast.LENGTH_SHORT).show();
-
                     }
                 });
 

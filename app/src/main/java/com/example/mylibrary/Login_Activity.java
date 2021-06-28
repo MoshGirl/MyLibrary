@@ -45,7 +45,6 @@ public class Login_Activity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Carregando, aguarde");
-        progressDialog.setMessage("Logando em sua conta...");
         progressDialog.setCanceledOnTouchOutside(false);
 
 
@@ -53,21 +52,17 @@ public class Login_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 validarDados2();
-
             }
         });
 
         binding.btCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(Login_Activity.this, Cadastro_Activity.class);
-                startActivity(it);
+                startActivity(new Intent(Login_Activity.this, Cadastro_Activity.class));
             }
         });
 
     }
-
-
 
     private void validarDados2() {
         email = binding.edtEmail.getText().toString().trim();
@@ -86,6 +81,7 @@ public class Login_Activity extends AppCompatActivity {
     }
 
     private void firebaseLogin() {
+        progressDialog.setMessage("Entrando...");
         progressDialog.show();
 
         mAuth.signInWithEmailAndPassword(email, senha)
@@ -93,7 +89,6 @@ public class Login_Activity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 checkUser();
-
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
@@ -118,9 +113,6 @@ public class Login_Activity extends AppCompatActivity {
                         progressDialog.dismiss();
                         String userType = ""+snapshot.child("userType").getValue();
                         if(userType.equals("user")){
-                            FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                            String email = firebaseUser.getEmail();
-                            Toast.makeText(Login_Activity.this, "Logado com Sucesso em \n" +email, Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Login_Activity.this, Usuario_Activity.class));
                             finish();
                         }
