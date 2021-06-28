@@ -3,20 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/search_ic"
-        android:title="Busca"
-        android:icon="@drawable/ic_serch"
-        app:showAsAction="ifRoom|collapseActionView"
-        app:actionViewClass="android.widget.SearchView"
-        />
-    <item
         android:id="@+id/perfil"
         android:title="Perfil"
-        app:showAsAction="never"
-        />
-    <item
-        android:id="@+id/config"
-        android:title="Configurações"
         app:showAsAction="never"
         />
     <item
