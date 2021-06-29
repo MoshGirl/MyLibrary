@@ -276,6 +276,7 @@ public class Login_Activity extends AppCompatActivity {
                                 hashMap.put("email", email);
                                 hashMap.put("nome", "");
                                 hashMap.put("profileImage", "");
+                                hashMap.put("cover", "");
                                 hashMap.put("userType", "user"); //possiveis valores, user e admin
                                 hashMap.put("timeStamp", timestamp );
 
