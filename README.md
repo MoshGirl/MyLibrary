@@ -1,7 +1,7 @@
 # MyLibrary
 
 
-# App para Android feito para o trabalho de Prog mobile. Tem como objetivo inicial a construção de um aplicativo para livros lidos
+# App para Android feito para o trabalho de Prog mobile. Tem como objetivo inicial a construção de um aplicativo para busca e compra de livros
 
 # Alunos:
 
